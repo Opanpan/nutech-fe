@@ -23,14 +23,12 @@ export default function Login() {
     // https://nutech-api.herokuapp.com
     Axios.post("https://nutech-api.herokuapp.com/auth/register", data)
       .then((res) => {
-        console.log(res);
         setValue("username", "");
         setValue("password", "");
         setShow(true);
         setResponseRegister(res.data);
       })
       .catch((error) => {
-        console.log(error);
         setResponseMessage(error.response.data);
       });
   };
@@ -53,7 +51,7 @@ export default function Login() {
             <Form.Group className="formBox">
               <Form.Control
                 id="username"
-                type="username"
+                type="text"
                 placeholder="Username"
                 className="formInput"
                 {...register("username", {
