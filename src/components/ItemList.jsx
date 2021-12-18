@@ -9,7 +9,7 @@ export default function ItemList(props) {
 
   // GET DATA FROM DATABASE
   useEffect(() => {
-    Axios.get("http://localhost:8000/item", {
+    Axios.get("https://nutech-api.herokuapp.com/item", {
       params: {
         user_id: localStorage.getItem("id"),
       },
@@ -26,7 +26,7 @@ export default function ItemList(props) {
       return;
     }
 
-    Axios.post("http://localhost:8000/item/create", item);
+    Axios.post("https://nutech-api.herokuapp.com/item/create", item);
 
     const newItems = [item, ...items];
     setItems(newItems);
