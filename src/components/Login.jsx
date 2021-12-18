@@ -22,11 +22,9 @@ export default function Login() {
     Axios.post("https://nutech-api.herokuapp.com/auth/login", data)
       .then((res) => {
         login(res.data);
-        console.log(res.data);
         navigate("/dashboard");
       })
       .catch((error) => {
-        console.log(error);
         setResponseMessage(error.response.data);
       });
   };
