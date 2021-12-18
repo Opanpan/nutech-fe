@@ -90,7 +90,9 @@ export default function Login() {
             <Row>
               <Col className="d-flex justify-content-center">
                 {isRegister ? (
-                  <UseAnimations animation={Loading} size={50} />
+                  <div style={{ marginTop: "15px" }}>
+                    <UseAnimations animation={Loading} size={50} />
+                  </div>
                 ) : (
                   <Button
                     className="btn-custom"
