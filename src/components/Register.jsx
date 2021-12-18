@@ -35,6 +35,7 @@ export default function Login() {
         setResponseRegister(res.data);
       })
       .catch((error) => {
+        setIsRegister(false);
         setResponseMessage(error.response.data);
       });
   };

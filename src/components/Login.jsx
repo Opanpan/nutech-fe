@@ -31,6 +31,7 @@ export default function Login() {
         navigate("/dashboard");
       })
       .catch((error) => {
+        setIsLogin(false);
         setResponseMessage(error.response.data);
       });
   };
