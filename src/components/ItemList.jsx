@@ -22,10 +22,6 @@ export default function ItemList(props) {
 
   // HANDLE ADD ITEM
   const addItem = (item) => {
-    if (!item.name || /^\s*$/.test(item.username)) {
-      return;
-    }
-
     Axios.post("https://nutech-api.herokuapp.com/item/create", item);
 
     const newItems = [item, ...items];

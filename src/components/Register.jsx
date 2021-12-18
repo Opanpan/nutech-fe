@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import Axios from "axios";
+import UseAnimations from "react-useanimations";
+import Loading from "react-useanimations/lib/loading";
 
 export default function Login() {
   const [show, setShow] = useState(false);
@@ -18,11 +20,15 @@ export default function Login() {
   const [responseMessage, setResponseMessage] = useState("");
   const [responseRegister, setResponseRegister] = useState("");
 
+  const [isRegister, setIsRegister] = useState(false);
+
   const onSubmit = (data) => {
     // http://localhost:8000
     // https://nutech-api.herokuapp.com
+    setIsRegister(true);
     Axios.post("https://nutech-api.herokuapp.com/auth/register", data)
       .then((res) => {
+        setIsRegister(false);
         setValue("username", "");
         setValue("password", "");
         setShow(true);
@@ -83,13 +89,17 @@ export default function Login() {
             </Form.Group>
             <Row>
               <Col className="d-flex justify-content-center">
-                <Button
-                  className="btn-custom"
-                  bsPrefix="super-btn"
-                  type="submit"
-                >
-                  Register
-                </Button>
+                {isRegister ? (
+                  <UseAnimations animation={Loading} size={50} />
+                ) : (
+                  <Button
+                    className="btn-custom"
+                    bsPrefix="super-btn"
+                    type="submit"
+                  >
+                    Register
+                  </Button>
+                )}
               </Col>
             </Row>
             <Row>
