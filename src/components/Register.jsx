@@ -14,7 +14,7 @@ export default function Login() {
   const [responseMessage, setResponseMessage] = useState("");
 
   const onSubmit = (data) => {
-    Axios.post("http://localhost:8000/auth/register", data)
+    Axios.post("https://nutech-api.herokuapp.com/auth/register", data)
       .then((res) => {
         console.log(res);
         setValue("username", "");
