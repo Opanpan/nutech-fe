@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import Axios from "axios";
 
 export default function Login() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+
   const {
     register,
     formState: { errors },
@@ -12,13 +16,18 @@ export default function Login() {
   } = useForm();
 
   const [responseMessage, setResponseMessage] = useState("");
+  const [responseRegister, setResponseRegister] = useState("");
 
   const onSubmit = (data) => {
-    Axios.post("https://nutech-api.herokuapp.com/auth/register", data)
+    // http://localhost:8000
+    // https://nutech-api.herokuapp.com
+    Axios.post("https://nutech-api.herokuapp.com", data)
       .then((res) => {
         console.log(res);
         setValue("username", "");
         setValue("password", "");
+        setShow(true);
+        setResponseRegister(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -33,6 +42,13 @@ export default function Login() {
           style={{ marginTop: "30%" }}
           className="d-flex justify-content-center"
         >
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>{responseRegister}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Thank you, registering :3</Modal.Body>
+          </Modal>
+
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="formBox">
               <Form.Control
