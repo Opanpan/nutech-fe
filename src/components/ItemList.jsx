@@ -31,11 +31,10 @@ export default function ItemList(props) {
   };
 
   const addItem = (item) => {
-    if ([...items].filter((oldItem) => oldItem.name === item.name)) {
+    if (items.find((oldItem) => oldItem.name === item.name)) {
       setIsNotif(true);
       setNotifMessage("Nama barang sudah ada");
       setSuggestMessage("Mohon gunakan nama lain");
-
       return;
     }
 
